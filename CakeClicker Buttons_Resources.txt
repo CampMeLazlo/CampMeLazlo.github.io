@@ -1,0 +1,144 @@
+
+/*BUTTONS*/
+*cakeClicker
+    name:Cake Clicker
+    desc:Click this to claim your cake. Grants one cake per click.
+    on click:yield 1 cake
+    show clicks:(clickClicker: clicks)
+
+/*buttons for upgrades*/
+*farmersButton
+    name:Farmers
+    desc:Click this to promote a new farmer. Increases CPS.
+    on click:add 1 farmer
+    show clicks:(farmersButton:farmer)
+
+
+*chickensButton
+    name:Chicken
+    desc:Click this to birth a new chicken. Increases CPS.
+    on click:add 1 chicken
+    show clicks:(chickensButton:chicken)
+
+*cowsButton
+    name:Cow
+    desc:Click this to create a new cow. Increases CPS.
+    on click:add 1 cow
+    show clicks:(cowsButton:cow)
+
+*bakersButton
+    name:Baker
+    desc:Click this to promote a new baker. Increases CPS.
+    on click:add 1 baker
+    show clicks:(bakersButton:baker)
+
+*sugarMastersButton
+    name:Sugar Master
+    desc:Click this to promote a new sugar master. Increases CPS.
+    on click:add 1 sugar master
+    show clicks:(sugarMastersButton:sugarMaster)
+
+*hoeButton
+    name:Hoe
+    desc:Click this to purchase an additional hoe. Increases CPS.
+    on click:add 1 hoe
+    show clicks:(hoeButton:hoe)
+
+*furnaceButton
+    name:Furnace
+    desc:Click this to purchase an additional furnace. Increases CPS
+    on click:add 1 furnace
+    show clicks:(furnaceButton:furnace)
+
+*waterButton
+    name:Water
+    desc:Click this to improve water quality. Increases CPS
+    on click:add 1 water
+    show clicks:(waterButton:water)
+
+*seedButton
+    name:Seed
+    desc:Click this to improve seed quality. Increases CPS
+    on click:add 1 seed
+    show clicks:(seedButton:seed)
+
+/*general customization buttons*/
+
+*statsButton
+    name:Statistics
+    desc:View CakeClicker stats
+    on click:open user stats
+
+
+*leaderboardButton
+    name:Leaderboard
+    desc:View your CakeClicker progress compared with the top players
+    on click:display leaderboard
+
+*achievementsButton
+    name:Achievements
+    desc:View CakeClicker milestone achievements
+    on click: display achievements
+
+*optionsButton
+    name:Options
+    desc:Make changes to CakeClicker settings
+    on click: open settings
+
+/*Resources*/
+*cake
+    name: Cake
+    desc: These are the cakes you clicked! Can't click more cakes without a cake to click for more cakes!
+    show earned: (cake:earned)
+    show max: (cake:max)
+    show cakePerSec: (cake:ps)
+
+*farmer
+    name:farmer
+    desc:These are the farmers hired to grow more crops.
+    show earned:(farmer:earned)
+
+*chicken
+    name:Chicken
+    desc:These are the chickens that create eggs for your cake.
+    show earned:(chicken:earned)
+
+*cow
+    name:cow
+    desc:These are the cows that produce the milk for your cake.
+    show earned:(cow:earned)
+
+*baker
+    name:baker
+    desc:These are the bakers who prepare your cake.
+    show earned:(baker:earned)
+
+*sugarMaster
+    name:sugarMaster
+    desc:These are the sugar experts who will elevate your cake.
+    show earned:(sugarMaster:earned)
+
+
+*hoe
+    name:hoe
+    desc:These are the tools to tend to your soil more effectively.
+    show earned:(hoe:earned)
+
+*furnace
+    name:furnace
+    desc:These are the ovens you bake your cake in.
+    show earned:(furnace:earned)
+
+
+*water
+    name:water
+    desc:This is the quality of water used in cake preparation.
+    show earned:(water:earned)
+
+*seed
+    name:seed
+    desc:This is the quality of seed used to grow ingredients for your cake.
+    show earned:(seed:earned)
+
+
+
