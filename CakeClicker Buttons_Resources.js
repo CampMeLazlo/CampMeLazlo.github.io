@@ -27,15 +27,15 @@ let furnace = new Resource("Furnace", "These are the ovens you bake your cake in
 let water = new Resource("Water", "This is the quality of water used in cake preparation.");
 let seed = new Resource("Seed", "This is the quality of seed used to grow ingredients for your cake.");
 
-// Cake Clicker button
-let cakeClicker = new Button(
-    "Cake Clicker",
-    "Click this to claim your cake. Grants one cake per click.",
-    function () {
-        cake.increment(1);
-        updateStats();
-    }
-);
+function updateCakeCount() {
+    document.getElementById("cake").innerHTML = `${cake.earned} cakes`;
+}
+
+function clickCake() {
+    cake.increment(1);
+    updateStats();
+    updateCakeCount();
+}
 
 // Upgrade buttons
 let farmersButton = new Button("Farmers", "Click this to promote a new farmer.", function () {
