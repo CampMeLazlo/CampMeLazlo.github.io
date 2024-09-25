@@ -10,9 +10,8 @@ body {
     width: 100px;
     height: 100px;
     outline: none;
-    background-color: transparent;
     cursor: pointer;
- }
+}
 
 .container {
     display: flex; 
@@ -45,11 +44,21 @@ body {
     box-sizing: border-box;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
+
+.upgrades {
+    
 }
+
+
+.tier{
+    
+}
+
+
+.Buildings{
+
+}
+
 
 .thing {
     border-radius: 8px;
