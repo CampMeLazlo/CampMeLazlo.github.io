@@ -52,7 +52,10 @@ body {
 
 .tier{
      display: grid;
-   height: 100px;
+     grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+   
+    height: 100px;
     max-width: 100%;
 
 }
