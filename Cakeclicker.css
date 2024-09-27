@@ -51,9 +51,11 @@ body {
 
 
 .tier{
-    background: limegreen;
+    background: purple;
     height: 100px;
     max-width: 100%;
+    object-fit: cover;
+     border: 5px solid #555;
 
 
 }
