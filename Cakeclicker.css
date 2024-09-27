@@ -45,8 +45,8 @@ body {
 }
 
 
-.Upgrades {
- background: limegreen;
+.Upgrades{
+
 }
 
 
@@ -56,9 +56,11 @@ body {
     max-width: 100%;
     object-fit: fill;
      border: 5px solid #555;
-
-
 }
+.caption{
+    display: block;
+}
+
 
 .Buildings{
 
