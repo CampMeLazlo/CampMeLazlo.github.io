@@ -46,19 +46,19 @@ body {
 
 
 .upgrades {
-    
-}
-
-
-.tier{
- 
-  object-fit: cover;
- 
-    display: grid;
+       display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 columns in the grid */
   gap: 10px; /* Spacing between the images */
   max-width: 600px; /* Adjust to your preferred width */
   margin: auto; /* Center the grid */
+}
+
+
+.tier{
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the images maintain aspect ratio and fill the space */
+
 }
 
 
