@@ -46,7 +46,9 @@ body {
 
 
 .upgrades {
-      
+    background: black;
+    width: 350px;
+    padding: 3rem;
 }
 
 
