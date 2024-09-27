@@ -51,9 +51,7 @@ body {
 
 
 .tier{
-     background: white;
-    width: 350px;
-    padding: 3rem;
+     display: grid;
    height: 100px;
     max-width: 100%;
 
