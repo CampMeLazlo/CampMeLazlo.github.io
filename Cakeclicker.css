@@ -46,13 +46,14 @@ body {
 
 
 .upgrades {
-    background: white;
-    width: 350px;
-    padding: 3rem;
+ 
 }
 
 
 .tier{
+     background: white;
+    width: 350px;
+    padding: 3rem;
    height: 100px;
     max-width: 100%;
 
