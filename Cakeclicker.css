@@ -47,10 +47,7 @@ body {
 
 .upgrades {
        display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns in the grid */
-  gap: 10px; /* Spacing between the images */
-  max-width: 600px; /* Adjust to your preferred width */
-  margin: auto; /* Center the grid */
+  grid-template-columns: repeat(3, 1fr);
 }
 
 
