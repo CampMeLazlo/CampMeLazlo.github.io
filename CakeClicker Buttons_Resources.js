@@ -37,6 +37,55 @@ function clickCake() {
     updateCakeCount();
 }
 
+const originalLeftContent = document.getElementById("left").innerHTML;
+
+   let isOptionsOpen = false;
+   let isStatsOpen = false;
+
+   function OptionToggle() {
+      if (isOptionsOpen) {
+         document.getElementById("left").innerHTML = originalLeftContent;
+         isOptionsOpen = false;
+      } else {
+         document.getElementById("left").innerHTML = `
+            <div>
+               <h2>Options</h2>
+               <h2>Save</h2>
+               <h2>Wipe save</h2>
+            </div>
+            <div>
+               <h2>Settings</h2>
+               <h2>Volume</h2>
+               <h2>Other settings</h2>
+            </div>`;
+         isOptionsOpen = true;
+         isStatsOpen = false;
+      }
+   }
+
+   function StatsToggle() {
+      if (isStatsOpen) {
+         document.getElementById("left").innerHTML = originalLeftContent;
+         isStatsOpen = false;
+      } else {
+         document.getElementById("left").innerHTML = `
+            <div>
+               <h2>Statistics</h2>
+               <h2>Basic game stats</h2>
+               <h2>Leaderboard</h2>
+            </div>
+            <div>
+               <h2>Upgrades</h2>
+               <h3>List of upgrades/types of cakes</h3>
+            </div>
+            <div>
+               <h2>List of achievements</h2>
+            </div>`;
+         isStatsOpen = true;
+         isOptionsOpen = false;
+      }
+   }
+
 // Upgrade buttons
 let farmersButton = new Button("Farmers", "Click this to promote a new farmer.", function () {
     farmer.increment(1);
