@@ -2,7 +2,7 @@
 
 body {
     color: #070507;
-    background: rgb(245,130,241);
+     background: linear-gradient(to right, #800080, #f582f1);
     background-attachment: fixed;
 }
 
@@ -64,6 +64,21 @@ background: purple;
 .caption{
     display: block;
 }
+
+.area{
+    vertical-align: top;
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 10px;
+    object-fit: cover;  
+}
+
+image-stack img {
+    display: block;
+    width: 100%; 
+    margin-bottom: 10px; 
+}
+
 
 
 .Buildings{
