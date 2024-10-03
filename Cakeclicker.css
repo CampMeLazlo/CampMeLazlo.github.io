@@ -46,24 +46,25 @@ body {
 
 
 .Upgrades{
-background: purple;
-    vertical-align: top;
-    display: inline-block;
-    text-align: center;
-    width: 120px;
+    height: 150px;
+    width: 273px;
+    padding-left: 75px;
+    overflow-y: auto;
 }
 
 
 .tier{
-    background: orange;
-    height: 100px;
-    max-width: 100%;
-    object-fit: fill;
+    background: transparent;
+    height: 50px;
+    width: 50px;
      border: 5px solid #555;
 }
-.caption{
-    display: block;
+
+.store{
+    padding-left: 20px;
+    padding-right: 30px;
 }
+
 
 .area{
     vertical-align: top;
@@ -78,13 +79,6 @@ image-stack img {
     width: 100%; 
     margin-bottom: 10px; 
 }
-
-
-
-.Buildings{
-
-}
-
 
 .thing {
     border-radius: 8px;
