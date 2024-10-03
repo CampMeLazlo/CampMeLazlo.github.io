@@ -4,12 +4,18 @@ body {
     color: #070507;
      background: linear-gradient(to right, #800080, #f582f1);
     background-attachment: fixed;
+    font-family: "Comic Sans MS", "Comic Sans";
+    margin: 0;
 }
 
 .cake{
     width: 100px;
     height: 100px;
-    outline: none;
+
+}
+button{
+    border: none;
+    background-color: transparent;
     cursor: pointer;
 }
 
@@ -33,8 +39,14 @@ body {
     width: 50%; 
     text-align: center;
     box-sizing: border-box;
+    background-image: url(Cafe\ Background.png);
+    background-position: center;
+    background-size: cover;
 }
 
+.Social{
+    padding-top: 214px;
+}
 
 .right {
     flex: 1; 
