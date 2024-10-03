@@ -1,10 +1,16 @@
 @charset "UTF-8";
 
+html{
+    height: 100%;
+    margin: 0;
+}
+
 body {
     color: #070507;
      background: linear-gradient(to right, #800080, #f582f1);
     background-attachment: fixed;
     font-family: "Comic Sans MS", "Comic Sans";
+    height: 100%;
     margin: 0;
 }
 
@@ -22,6 +28,8 @@ button{
 .container {
     display: flex; 
     justify-content: space-between; 
+    height: 100%;
+    width: 100%;
 }
 
 
@@ -37,15 +45,21 @@ button{
 .center {
     flex: 1; 
     width: 50%; 
+    height: 100%;
     text-align: center;
     box-sizing: border-box;
     background-image: url(Cafe\ Background.png);
     background-position: center;
     background-size: cover;
+    padding-top: 25px;
+}
+
+.top{
+    height: 90%;
 }
 
 .Social{
-    padding-top: 214px;
+    height: 10%;
 }
 
 .right {
