@@ -27,24 +27,20 @@ let furnace = new Resource("Furnace", "These are the ovens you bake your cake in
 let water = new Resource("Water", "This is the quality of water used in cake preparation.");
 let seed = new Resource("Seed", "This is the quality of seed used to grow ingredients for your cake.");
 
-// Cake per click and player's cake count
+// Player object with initial settings
 let player = {
     cakesPerClick: 1, // Starts at 1 cake per click
     cakes: 0
 };
 
-// Cake Clicker button
-let cakeClicker = new Button(
-    "Cake Clicker",
-    "Click this to claim your cake. Grants cakes per click.",
-    function () {
-        player.cakes += player.cakesPerClick; // Add cakes per click to the total cakes
-        cake.increment(player.cakesPerClick); // Increment the cake resource
-        updateStats();
-    }
-);
+// Function to handle cake click (make sure this is global for HTML access)
+function clickCake() {
+    player.cakes += player.cakesPerClick;
+    cake.increment(player.cakesPerClick);
+    updateStats();
+}
 
-// Upgrade buttons with functionality (connected to Resource object system)
+// Upgrade buttons for resources
 let farmersButton = new Button("Farmers", "Click this to promote a new farmer.", function () {
     farmer.increment(1);
     updateStats();
@@ -90,7 +86,7 @@ let seedButton = new Button("Seed", "Click this to improve seed quality.", funct
     updateStats();
 });
 
-// Upgrade logic for tools (Hoe, Furnace, Water, Seeds)
+// Upgrade logic for specific resources (Hoe, Furnace, Water, Seeds)
 function upgradeResource(resource, cakesCost, cakesPerClickIncrease) {
     if (player.cakes >= cakesCost) {
         player.cakes -= cakesCost;
@@ -103,13 +99,13 @@ function upgradeResource(resource, cakesCost, cakesPerClickIncrease) {
     }
 }
 
-// Statistics Button
+// Statistics Button for viewing stats in console
 let statsButton = new Button("Statistics", "View CakeClicker stats", function () {
     console.log("Statistics button clicked");
     displayStats();
 });
 
-// Display the resources in the console (or update UI)
+// Display resources and stats in the console
 function displayStats() {
     console.log(`Cakes: ${cake.earned}`);
     console.log(`Farmers: ${farmer.earned}`);
@@ -127,26 +123,18 @@ function displayStats() {
 
 // Function to update stats on the screen
 function updateStats() {
+    document.getElementById("cake").innerText = `${player.cakes} cakes`;
     displayStats();
 }
 
-// Simulating some button clicks
-cakeClicker.onClick();
-farmersButton.onClick();
-chickensButton.onClick();
-cowsButton.onClick();
-bakersButton.onClick();
-sugarMastersButton.onClick();
-hoeButton.onClick();
-furnaceButton.onClick();
-waterButton.onClick();
-seedButton.onClick();
+// Placeholder functions for Options and Stats toggling (add implementation as needed)
+function OptionToggle() {
+    console.log("Options toggled.");
+}
 
-// Show the updated stats
-statsButton.onClick();
+function StatsToggle() {
+    console.log("Stats toggled.");
+}
 
-// Example usage of upgrade logic (e.g., upgrading the Hoe costs 10 cakes, increases cakes per click by 2)
-upgradeResource(hoe, 10, 2);
-upgradeResource(furnace, 50, 10);
-upgradeResource(water, 20, 5);
-upgradeResource(seed, 30, 4);
+// Initialize the game
+updateStats();
