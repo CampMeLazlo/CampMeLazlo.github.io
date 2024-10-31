@@ -33,22 +33,16 @@ let player = {
     cakes: 0
 };
 
-// Cake Clicker function (standalone to be globally accessible)
-function clickCake() {
-    player.cakes += player.cakesPerClick; // Add cakes per click to total cakes
-    updateStats(); // Update stats display
-    saveGame(); // Optional: Save game progress
-}
-
 // Cake Clicker button
 let cakeClicker = new Button(
     "Cake Clicker",
     "Click this to claim your cake. Grants cakes per click.",
-    clickCake
+    function () {
+        player.cakes += player.cakesPerClick; // Add cakes per click to the total cakes
+        cake.increment(player.cakesPerClick); // Increment the cake resource
+        updateStats();
+    }
 );
-
-// Add event listener to simulate button click functionality
-document.getElementById("cakeClicker").addEventListener("click", clickCake);
 
 // Upgrade buttons with functionality (connected to Resource object system)
 let farmersButton = new Button("Farmers", "Click this to promote a new farmer.", function () {
@@ -73,6 +67,26 @@ let bakersButton = new Button("Baker", "Click this to promote a new baker.", fun
 
 let sugarMastersButton = new Button("Sugar Master", "Click this to promote a new sugar master.", function () {
     sugarMaster.increment(1);
+    updateStats();
+});
+
+let hoeButton = new Button("Hoe", "Click this to purchase an additional hoe.", function () {
+    hoe.increment(1);
+    updateStats();
+});
+
+let furnaceButton = new Button("Furnace", "Click this to purchase an additional furnace.", function () {
+    furnace.increment(1);
+    updateStats();
+});
+
+let waterButton = new Button("Water", "Click this to improve water quality.", function () {
+    water.increment(1);
+    updateStats();
+});
+
+let seedButton = new Button("Seed", "Click this to improve seed quality.", function () {
+    seed.increment(1);
     updateStats();
 });
 
@@ -103,6 +117,10 @@ function displayStats() {
     console.log(`Cows: ${cow.earned}`);
     console.log(`Bakers: ${baker.earned}`);
     console.log(`Sugar Masters: ${sugarMaster.earned}`);
+    console.log(`Hoes: ${hoe.earned}`);
+    console.log(`Furnaces: ${furnace.earned}`);
+    console.log(`Water: ${water.earned}`);
+    console.log(`Seed: ${seed.earned}`);
     console.log(`Total cakes per click: ${player.cakesPerClick}`);
     console.log(`Total cakes: ${player.cakes}`);
 }
@@ -112,7 +130,23 @@ function updateStats() {
     displayStats();
 }
 
-// Optional function to save the game state
-function saveGame() {
-    console.log("Game saved!");
-}
+// Simulating some button clicks
+cakeClicker.onClick();
+farmersButton.onClick();
+chickensButton.onClick();
+cowsButton.onClick();
+bakersButton.onClick();
+sugarMastersButton.onClick();
+hoeButton.onClick();
+furnaceButton.onClick();
+waterButton.onClick();
+seedButton.onClick();
+
+// Show the updated stats
+statsButton.onClick();
+
+// Example usage of upgrade logic (e.g., upgrading the Hoe costs 10 cakes, increases cakes per click by 2)
+upgradeResource(hoe, 10, 2);
+upgradeResource(furnace, 50, 10);
+upgradeResource(water, 20, 5);
+upgradeResource(seed, 30, 4);
