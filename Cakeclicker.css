@@ -69,6 +69,7 @@ button{
     height: 100%;
     text-align: center;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .top-right{
@@ -87,10 +88,6 @@ button{
     height: 50px;
     width: 50px;
      border: 5px solid #555;
-}
-
-.Buildings{
-    overflow-y: auto;
 }
 
 .image-container {
