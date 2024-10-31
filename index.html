@@ -1,102 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <script src="CakeClicker Buttons_Resources.js" defer></script>
+    <script src="Buttons_Resources.js" defer></script>
     <link rel="stylesheet" href="Cakeclicker.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Idle Clicker Game</title>
 </head>
 <body>
-   <div class="container">
-      <div id ="left" class="left">
-         <h2>Buildings to create materials and bake cakes</h2>
-         <div class="image-stack">
-            <img class="area" src="Wheat Area v2.png" alt=" Wheat Area">
-            <img class="area" src="Sugarcane Area v2.png" alt=" Sugarcane Area">
-            <img class="area" src="Chicken Area v2.png" alt=" Chicken Area">
-            <img class="area" src="Cow Area v2.png" alt=" Cow Area">
-            <img class="area" src="Bakery Area v2.png" alt=" Bakery Area">
-         </div>
-      </div>
-      <div id ="middle" class="center">
-         <div class="top">
-            <button id="Options" onclick="OptionToggle()">
-               <img src="Settings Button.png">
-           </button>
-           <button id="Stats" onclick="StatsToggle()">
-               <img src="Stats Button.png">
-            </button>
-            <h2>(insert shop name here)</h2>
-            <h2 id="cake">0 cakes</h2>
-            <p>Cakes per second</p>
-            <button id="cakeClicker" onclick="clickCake()">
-              <img class="cake" src="Cake.png" alt="Cake">
-            </button>
-            <h2>Random quotes/reviews</h2>
-         </div>
-         <div class="Social">
-            <img src="Facebook Icon.png">
-            <img src="Instagram Icon.png">
-            <img src="Tik Tok Icon.png">
-         </div>
-      </div>
-      <div id=" right" class="right">
-         <h2>Upgrades</h2>
-         <div class="top-right">
-            <div class="Upgrades">
-              <img class="tier" src="standard_furnace.png">
-              <img class="tier" src="wooden_bucket.png">
-              <img class="tier" src="milk.png">
-              <img class="tier" src="wooden_hoe.png">
-              <img class="tier" src="Copper Furnace v2.png">
-              <img class="tier" src="stone_bucket.png">
-              <img class="tier" src="golden_milk.png">
-              <img class="tier" src="stone_hoe.png">
-              <img class="tier" src="Iron Furnace v2.png">
-              <img class="tier" src="iron_bucket.png">
-              <img class="tier" src="milk.png">
-              <img class="tier" src="iron_hoe.png">
-              <img class="tier" src="Gold Furnace v2.png">
-              <img class="tier" src="gold_bucket.png">
-              <img class="tier" src="milk.png">
-              <img class="tier" src="golden_hoe.png">
-              <img class="tier" src="Diamond Furnace v2.png">
-              <img class="tier" src="diamond_bucket.png">
-              <img class="tier" src="milk.png">
-              <img class="tier" src="diamond_hoe.png">
-           </div>
-         </div>
-         <h2>Store</h2>
-        <div class="Buildings">
-         <div class="image-container">
-            <div class="store-wrapper" style="background-image: url('store_button.png');">
-                <img class="store" src="Click.png" alt="Click">
-                <p class="Item">0 Cursors</p>
-            </div>
-            <div class="store-wrapper" style="background-image: url('store_button.png');">
-                <img class="store" src="Farmer.png" alt="Farmer">
-                <p class="Item">0 Farmers</p>
-            </div>
-            <div class="store-wrapper" style="background-image: url('store_button.png');">
-                <img class="store" src="Cow.png" alt="Cow">
-                <p class="Item">0 Cows</p>
-            </div>
-            <div class="store-wrapper" style="background-image: url('store_button.png');">
-                <img class="store" src="Chicken.png" alt="Chicken">
-                <p class="Item">0 Chickens</p>
-            </div>
-            <div class="store-wrapper" style="background-image: url('store_button.png');">
-                <img class="store" src="Sugar Master.png" alt="Sugar Master">
-                <p class="Item">0 Sugar Masters</p>
-            </div>
-            <div class="store-wrapper" style="background-image: url('store_button.png');">
-                <img class="store" src="Baker.png" alt="Baker">
-                <p class="Item">0 Bakers</p>
+    <div class="container">
+        <!-- Left Section -->
+        <div id="left" class="left">
+            <h2>Buildings to create materials and bake cakes</h2>
+            <div class="image-stack">
+                <img class="area" src="Wheat Area v2.png" alt="Wheat Area">
+                <img class="area" src="Sugarcane Area v2.png" alt="Sugarcane Area">
+                <img class="area" src="Chicken Area v2.png" alt="Chicken Area">
+                <img class="area" src="Cow Area v2.png" alt="Cow Area">
+                <img class="area" src="Bakery Area v2.png" alt="Bakery Area">
             </div>
         </div>
-      </div>
-      </div>
-   </div>
+
+        <!-- Middle Section -->
+        <div id="middle" class="center">
+            <div class="top">
+                <!-- Settings and Options Buttons -->
+                <button id="optionsButton" onclick="OptionToggle()">Options</button>
+                <button id="saveButton" onclick="saveGame()">Save</button>
+                <button id="wipeSaveButton" onclick="wipeSave()">Wipe Save</button>
+                <button id="settingsButton">Settings</button>
+                <button id="volumeButton">Volume</button>
+                
+                <button id="statsButton" onclick="StatsToggle()">
+                    <img src="Stats Button.png" alt="Stats">
+                </button>
+
+                <h2>(Insert Shop Name Here)</h2>
+                
+                <!-- Cake Counter -->
+                <h2 id="cakeDisplay">0 cakes</h2>
+                <p id="cakesPerSecond">0 cakes per second</p>
+
+                <!-- Cake Clicker Button -->
+                <button id="cakeClicker" onclick="clickCake()">
+                    <img class="cake" src="Cake.png" alt="Cake">
+                </button>
+                
+                <h2>Random quotes/reviews</h2>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div class="Social">
+                <img src="Facebook Icon.png" alt="Facebook">
+                <img src="Instagram Icon.png" alt="Instagram">
+                <img src="Tik Tok Icon.png" alt="TikTok">
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div id="right" class="right">
+            <h2>Upgrades</h2>
+            <div class="top-right">
+                <!-- Upgrade Buttons with IDs for Each Tier -->
+                <div class="Upgrades">
+                    <button id="standardFurnace">Standard Furnace</button>
+                    <button id="stoneFurnace">Stone Furnace</button>
+                    <button id="ironFurnace">Iron Furnace</button>
+                    <button id="goldFurnace">Gold Furnace</button>
+                    <button id="diamondFurnace">Diamond Furnace</button>
+                    <button id="standardWaterBucket">Standard Water Bucket</button>
+                    <button id="stoneWaterBucket">Stone Water Bucket</button>
+                    <button id="ironWaterBucket">Iron Water Bucket</button>
+                    <button id="goldWaterBucket">Gold Water Bucket</button>
+                    <button id="diamondWaterBucket">Diamond Water Bucket</button>
+                    <button id="standardMilkBottle">Standard Milk Bottle</button>
+                    <button id="stoneMilkBottle">Stone Milk Bottle</button>
+                    <button id="ironMilkBottle">Iron Milk Bottle</button>
+                    <button id="goldMilkBottle">Gold Milk Bottle</button>
+                    <button id="diamondMilkBottle">Diamond Milk Bottle</button>
+                    <button id="standardHoe">Standard Hoe</button>
+                    <button id="stoneHoe">Stone Hoe</button>
+                    <button id="ironHoe">Iron Hoe</button>
+                    <button id="goldHoe">Gold Hoe</button>
+                    <button id="diamondHoe">Diamond Hoe</button>
+                </div>
+            </div>
+
+            <h2>Store</h2>
+            <div class="Buildings">
+                <!-- Store Buildings -->
+                <div class="store-wrapper" style="background-image: url('store_button.png');">
+                    <img class="store" src="Click.png" alt="Click">
+                    <p class="Item">0 Cursors</p>
+                </div>
+                <div class="store-wrapper" style="background-image: url('store_button.png');">
+                    <img class="store" src="Farmer.png" alt="Farmer">
+                    <p class="Item">0 Farmers</p>
+                </div>
+                <div class="store-wrapper" style="background-image: url('store_button.png');">
+                    <img class="store" src="Cow.png" alt="Cow">
+                    <p class="Item">0 Cows</p>
+                </div>
+                <div class="store-wrapper" style="background-image: url('store_button.png');">
+                    <img class="store" src="Chicken.png" alt="Chicken">
+                    <p class="Item">0 Chickens</p>
+                </div>
+                <div class="store-wrapper" style="background-image: url('store_button.png');">
+                    <img class="store" src="Sugar Master.png" alt="Sugar Master">
+                    <p class="Item">0 Sugar Masters</p>
+                </div>
+                <div class="store-wrapper" style="background-image: url('store_button.png');">
+                    <img class="store" src="Baker.png" alt="Baker">
+                    <p class="Item">0 Bakers</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
