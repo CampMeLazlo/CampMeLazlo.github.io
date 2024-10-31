@@ -1,10 +1,16 @@
 // Resource object constructor
-function Resource(name, description) {
+function Resource(name, description, baseCost, cps) {
     this.name = name;
     this.description = description;
     this.earned = 0;
+    this.baseCost = baseCost; // Starting cost
+    this.currentCost = baseCost; // Current cost, increases with purchases
+    this.cakesPerSecond = cps; // Cakes generated per second
     this.increment = function (amount) {
         this.earned += amount;
+    };
+    this.increaseCost = function () {
+        this.currentCost = Math.ceil(this.currentCost * 1.5); // Increase cost by 1.5%
     };
 }
 
@@ -17,17 +23,12 @@ function Button(name, description, onClickFunction) {
 
 // Global resources
 let cake = new Resource("Cake", "These are the cakes you clicked!");
-let farmer = new Resource("Farmer", "These are the farmers hired to grow more crops.");
-let chicken = new Resource("Chicken", "These are the chickens that create eggs for your cake.");
-let cow = new Resource("Cow", "These are the cows that produce the milk for your cake.");
-let baker = new Resource("Baker", "These are the bakers who prepare your cake.");
-let sugarMaster = new Resource("Sugar Master", "These are the sugar experts who will elevate your cake.");
-let cursor = new Resource("Cursor", "These cursors generate 1 cake per second.");
-
-let hoe = new Resource("Hoe", "These are the tools to tend to your soil more effectively.");
-let furnace = new Resource("Furnace", "These are the ovens you bake your cake in.");
-let water = new Resource("Water", "This is the quality of water used in cake preparation.");
-let milk = new Resource("Milk", "This is the milk quality for your cake.");
+let cursor = new Resource("Cursor", "These cursors generate 1 cake per second.", 10, 1);
+let farmer = new Resource("Farmer", "These are the farmers hired to grow more crops.", 100, 2);
+let cow = new Resource("Cow", "These are the cows that produce the milk for your cake.", 500, 5);
+let chicken = new Resource("Chicken", "These are the chickens that create eggs for your cake.", 1000, 10);
+let sugarMaster = new Resource("Sugar Master", "These are the sugar experts who will elevate your cake.", 3000, 20);
+let baker = new Resource("Baker", "These are the bakers who prepare your cake.", 5000, 50);
 
 // Player object with initial settings
 let player = {
@@ -46,95 +47,47 @@ function clickCake() {
 // Passive cake generation function
 function startPassiveCakeGeneration() {
     setInterval(() => {
-        // Only add passive cakes if player has earned cursors or other sources of passive cakes
         player.cakes += player.cakesPerSecond;
         updateStats();
     }, 1000);
 }
 
-// Upgrade buttons for resources
-let farmersButton = new Button("Farmers", "Click this to promote a new farmer.", function () {
-    farmer.increment(1);
-    updateStats();
+// Purchase function for store items
+function purchaseItem(item) {
+    if (player.cakes >= item.currentCost) {
+        player.cakes -= item.currentCost;
+        item.increment(1);
+        player.cakesPerSecond += item.cakesPerSecond;
+        item.increaseCost();
+        updateStats();
+    } else {
+        alert(`You need ${item.currentCost} cakes to purchase a ${item.name}.`);
+    }
+}
+
+// Buttons for purchasing resources
+let cursorButton = new Button("Cursor", `Costs ${cursor.baseCost} cakes, generates ${cursor.cakesPerSecond} cake per second.`, function () {
+    purchaseItem(cursor);
 });
 
-let chickensButton = new Button("Chicken", "Click this to birth a new chicken.", function () {
-    chicken.increment(1);
-    updateStats();
+let farmersButton = new Button("Farmer", `Costs ${farmer.baseCost} cakes, generates ${farmer.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(farmer);
 });
 
-let cowsButton = new Button("Cow", "Click this to create a new cow.", function () {
-    cow.increment(1);
-    updateStats();
+let cowsButton = new Button("Cow", `Costs ${cow.baseCost} cakes, generates ${cow.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(cow);
 });
 
-let bakersButton = new Button("Baker", "Click this to promote a new baker.", function () {
-    baker.increment(1);
-    updateStats();
+let chickensButton = new Button("Chicken", `Costs ${chicken.baseCost} cakes, generates ${chicken.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(chicken);
 });
 
-let sugarMastersButton = new Button("Sugar Master", "Click this to promote a new sugar master.", function () {
-    sugarMaster.increment(1);
-    updateStats();
+let sugarMastersButton = new Button("Sugar Master", `Costs ${sugarMaster.baseCost} cakes, generates ${sugarMaster.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(sugarMaster);
 });
 
-let cursorButton = new Button("Cursor", "Click this to buy a cursor. Each cursor generates 1 cake per second.", function () {
-    cursor.increment(1);
-    player.cakesPerSecond += 1; // Increase passive cakes per second by 1 for each cursor
-    updateStats();
-});
-
-// Equipment upgrade buttons for each level and type
-let stoneHoeButton = new Button("Stone Hoe", "Upgrade to a stone hoe for improved soil preparation.", function () {
-    upgradeResource(hoe, 10, 2);
-});
-let ironHoeButton = new Button("Iron Hoe", "Upgrade to an iron hoe for better soil preparation.", function () {
-    upgradeResource(hoe, 20, 4);
-});
-let goldHoeButton = new Button("Gold Hoe", "Upgrade to a gold hoe for premium soil preparation.", function () {
-    upgradeResource(hoe, 50, 8);
-});
-let diamondHoeButton = new Button("Diamond Hoe", "Upgrade to a diamond hoe for elite soil preparation.", function () {
-    upgradeResource(hoe, 100, 16);
-});
-
-let stoneWaterButton = new Button("Stone Water Bucket", "Upgrade to a stone water bucket for better water quality.", function () {
-    upgradeResource(water, 10, 2);
-});
-let ironWaterButton = new Button("Iron Water Bucket", "Upgrade to an iron water bucket for superior water quality.", function () {
-    upgradeResource(water, 20, 4);
-});
-let goldWaterButton = new Button("Gold Water Bucket", "Upgrade to a gold water bucket for premium water quality.", function () {
-    upgradeResource(water, 50, 8);
-});
-let diamondWaterButton = new Button("Diamond Water Bucket", "Upgrade to a diamond water bucket for elite water quality.", function () {
-    upgradeResource(water, 100, 16);
-});
-
-let stoneMilkButton = new Button("Stone Milk Bottle", "Upgrade to a stone milk bottle for richer milk quality.", function () {
-    upgradeResource(milk, 10, 2);
-});
-let ironMilkButton = new Button("Iron Milk Bottle", "Upgrade to an iron milk bottle for superior milk quality.", function () {
-    upgradeResource(milk, 20, 4);
-});
-let goldMilkButton = new Button("Gold Milk Bottle", "Upgrade to a gold milk bottle for premium milk quality.", function () {
-    upgradeResource(milk, 50, 8);
-});
-let diamondMilkButton = new Button("Diamond Milk Bottle", "Upgrade to a diamond milk bottle for elite milk quality.", function () {
-    upgradeResource(milk, 100, 16);
-});
-
-let stoneFurnaceButton = new Button("Stone Furnace", "Upgrade to a stone furnace for faster baking.", function () {
-    upgradeResource(furnace, 10, 2);
-});
-let ironFurnaceButton = new Button("Iron Furnace", "Upgrade to an iron furnace for better baking speed.", function () {
-    upgradeResource(furnace, 20, 4);
-});
-let goldFurnaceButton = new Button("Gold Furnace", "Upgrade to a gold furnace for premium baking speed.", function () {
-    upgradeResource(furnace, 50, 8);
-});
-let diamondFurnaceButton = new Button("Diamond Furnace", "Upgrade to a diamond furnace for elite baking speed.", function () {
-    upgradeResource(furnace, 100, 16);
+let bakersButton = new Button("Baker", `Costs ${baker.baseCost} cakes, generates ${baker.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(baker);
 });
 
 // Upgrade logic for specific resources
@@ -159,16 +112,12 @@ let statsButton = new Button("Statistics", "View CakeClicker stats", function ()
 // Display resources and stats in the console
 function displayStats() {
     console.log(`Cakes: ${cake.earned}`);
-    console.log(`Farmers: ${farmer.earned}`);
-    console.log(`Chickens: ${chicken.earned}`);
-    console.log(`Cows: ${cow.earned}`);
-    console.log(`Bakers: ${baker.earned}`);
-    console.log(`Sugar Masters: ${sugarMaster.earned}`);
-    console.log(`Cursors: ${cursor.earned}`);
-    console.log(`Hoes: ${hoe.earned}`);
-    console.log(`Furnaces: ${furnace.earned}`);
-    console.log(`Water: ${water.earned}`);
-    console.log(`Milk: ${milk.earned}`);
+    console.log(`Cursors: ${cursor.earned} (Cost: ${cursor.currentCost}, CPS: ${cursor.cakesPerSecond})`);
+    console.log(`Farmers: ${farmer.earned} (Cost: ${farmer.currentCost}, CPS: ${farmer.cakesPerSecond})`);
+    console.log(`Cows: ${cow.earned} (Cost: ${cow.currentCost}, CPS: ${cow.cakesPerSecond})`);
+    console.log(`Chickens: ${chicken.earned} (Cost: ${chicken.currentCost}, CPS: ${chicken.cakesPerSecond})`);
+    console.log(`Sugar Masters: ${sugarMaster.earned} (Cost: ${sugarMaster.currentCost}, CPS: ${sugarMaster.cakesPerSecond})`);
+    console.log(`Bakers: ${baker.earned} (Cost: ${baker.currentCost}, CPS: ${baker.cakesPerSecond})`);
     console.log(`Total cakes per click: ${player.cakesPerClick}`);
     console.log(`Total cakes per second: ${player.cakesPerSecond}`);
     console.log(`Total cakes: ${player.cakes}`);
