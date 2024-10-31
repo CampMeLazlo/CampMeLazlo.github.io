@@ -39,7 +39,7 @@ button{
     height: 100%;
     text-align: center;
     box-sizing: border-box;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 
@@ -71,12 +71,14 @@ button{
     box-sizing: border-box;
 }
 
+.top-right{
+    overflow-y: auto;
+}
 
 .Upgrades{
+    width: 75%;
     height: 150px;
-    width: 273px;
-    padding-left: 75px;
-    overflow-y: auto;
+    padding-left: 50px;
 }
 
 
@@ -87,10 +89,15 @@ button{
      border: 5px solid #555;
 }
 
+.Buildings{
+    overflow-y: auto;
+}
+
 .image-container {
     display: flex;
-    flex-wrap: wrap; 
-    gap: 20px; 
+    flex-wrap: wrap;
+    width: 300px;
+    height: 300px;
 }
 
 .store-wrapper {
