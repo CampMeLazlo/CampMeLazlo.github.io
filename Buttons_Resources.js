@@ -59,12 +59,16 @@ let player = {
     cakes: 0
 };
 
-// Cake clicking function (standalone, so it can be called directly in HTML)
-function clickCake() {
-    player.cakes += player.cakesPerClick;
-    cake.increment(player.cakesPerClick);
-    updateStats();
-}
+// Cake Clicker button
+let cakeClicker = new Button(
+    "Cake Clicker",
+    "Click this to claim your cake. Grants cakes per click.",
+    function () {
+        player.cakes += player.cakesPerClick;
+        cake.increment(player.cakesPerClick);
+        updateStats();
+    }
+);
 
 // Upgrade buttons with functionality
 let farmersButton = new Button("Farmers", "Click this to promote a new farmer.", function () {
@@ -152,6 +156,7 @@ function updateStats() {
 
 // Attach buttons to HTML on page load
 window.onload = function () {
+    createButton(cakeClicker, "gameContainer");
     createButton(farmersButton, "upgradesContainer");
     createButton(chickensButton, "upgradesContainer");
     createButton(cowsButton, "upgradesContainer");
