@@ -15,15 +15,6 @@ function Button(name, description, onClickFunction) {
     this.onClick = onClickFunction;
 }
 
-// Helper function to create and attach a button to the page
-function createButton(buttonObj, containerId) {
-    let button = document.createElement("button");
-    button.innerText = buttonObj.name;
-    button.title = buttonObj.description;
-    button.addEventListener("click", buttonObj.onClick);
-    document.getElementById(containerId).appendChild(button);
-}
-
 // Global resources
 let cake = new Resource("Cake", "These are the cakes you clicked!");
 let farmer = new Resource("Farmer", "These are the farmers hired to grow more crops.");
@@ -31,31 +22,14 @@ let chicken = new Resource("Chicken", "These are the chickens that create eggs f
 let cow = new Resource("Cow", "These are the cows that produce the milk for your cake.");
 let baker = new Resource("Baker", "These are the bakers who prepare your cake.");
 let sugarMaster = new Resource("Sugar Master", "These are the sugar experts who will elevate your cake.");
+let hoe = new Resource("Hoe", "These are the tools to tend to your soil more effectively.");
+let furnace = new Resource("Furnace", "These are the ovens you bake your cake in.");
+let water = new Resource("Water", "This is the quality of water used in cake preparation.");
+let seed = new Resource("Seed", "This is the quality of seed used to grow ingredients for your cake.");
 
-// Tiers for items
-let tiers = ["Standard", "Stone", "Iron", "Gold", "Diamond"];
-
-let equipment = {
-    furnace: { level: 0, description: "Furnace for baking", name: "Furnace" },
-    waterBucket: { level: 0, description: "Water bucket for baking", name: "Water Bucket" },
-    milkBottle: { level: 0, description: "Milk bottle for baking", name: "Milk Bottle" },
-    hoe: { level: 0, description: "Hoe for soil preparation", name: "Hoe" }
-};
-
-// Function to upgrade equipment tier
-function upgradeEquipment(equipmentItem) {
-    if (equipment[equipmentItem].level < tiers.length - 1) {
-        equipment[equipmentItem].level += 1;
-        alert(`${equipment[equipmentItem].name} upgraded to ${tiers[equipment[equipmentItem].level]} level!`);
-        updateStats();
-    } else {
-        alert(`${equipment[equipmentItem].name} is already at the highest level.`);
-    }
-}
-
-// Player and cakes
+// Cake per click and player's cake count
 let player = {
-    cakesPerClick: 1,
+    cakesPerClick: 1, // Starts at 1 cake per click
     cakes: 0
 };
 
@@ -64,13 +38,13 @@ let cakeClicker = new Button(
     "Cake Clicker",
     "Click this to claim your cake. Grants cakes per click.",
     function () {
-        player.cakes += player.cakesPerClick;
-        cake.increment(player.cakesPerClick);
+        player.cakes += player.cakesPerClick; // Add cakes per click to the total cakes
+        cake.increment(player.cakesPerClick); // Increment the cake resource
         updateStats();
     }
 );
 
-// Upgrade buttons with functionality
+// Upgrade buttons with functionality (connected to Resource object system)
 let farmersButton = new Button("Farmers", "Click this to promote a new farmer.", function () {
     farmer.increment(1);
     updateStats();
@@ -96,44 +70,46 @@ let sugarMastersButton = new Button("Sugar Master", "Click this to promote a new
     updateStats();
 });
 
-// Equipment upgrade buttons
-let furnaceButton = new Button("Upgrade Furnace", "Upgrade your furnace for better baking.", function () {
-    upgradeEquipment("furnace");
+let hoeButton = new Button("Hoe", "Click this to purchase an additional hoe.", function () {
+    hoe.increment(1);
+    updateStats();
 });
 
-let waterBucketButton = new Button("Upgrade Water Bucket", "Upgrade your water bucket for better cake quality.", function () {
-    upgradeEquipment("waterBucket");
+let furnaceButton = new Button("Furnace", "Click this to purchase an additional furnace.", function () {
+    furnace.increment(1);
+    updateStats();
 });
 
-let milkBottleButton = new Button("Upgrade Milk Bottle", "Upgrade your milk bottle for richer cakes.", function () {
-    upgradeEquipment("milkBottle");
+let waterButton = new Button("Water", "Click this to improve water quality.", function () {
+    water.increment(1);
+    updateStats();
 });
 
-let hoeButton = new Button("Upgrade Hoe", "Upgrade your hoe for better soil preparation.", function () {
-    upgradeEquipment("hoe");
+let seedButton = new Button("Seed", "Click this to improve seed quality.", function () {
+    seed.increment(1);
+    updateStats();
 });
 
-// Option and settings buttons
-let optionsButton = new Button("Options", "Open game options.", function () {
-    alert("Options menu opened.");
-});
-let saveButton = new Button("Save", "Save your game progress.", function () {
-    alert("Game progress saved.");
-});
-let wipeSaveButton = new Button("Wipe Save", "Erase all game data.", function () {
-    alert("Game data erased.");
-});
-let settingsButton = new Button("Settings", "Game settings.", function () {
-    alert("Settings menu opened.");
-});
-let volumeButton = new Button("Volume", "Adjust game volume.", function () {
-    alert("Volume settings opened.");
-});
-let otherSettingsButton = new Button("Other Settings", "View other settings.", function () {
-    alert("Other settings menu opened.");
+// Upgrade logic for tools (Hoe, Furnace, Water, Seeds)
+function upgradeResource(resource, cakesCost, cakesPerClickIncrease) {
+    if (player.cakes >= cakesCost) {
+        player.cakes -= cakesCost;
+        player.cakesPerClick += cakesPerClickIncrease; // Increase cakes per click based on the upgrade
+        resource.increment(1); // Increase resource
+        alert(`${resource.name} upgraded! Cakes per click increased by ${cakesPerClickIncrease}. Total cakes per click: ${player.cakesPerClick}`);
+        updateStats();
+    } else {
+        alert(`You need ${cakesCost} cakes to upgrade ${resource.name}.`);
+    }
+}
+
+// Statistics Button
+let statsButton = new Button("Statistics", "View CakeClicker stats", function () {
+    console.log("Statistics button clicked");
+    displayStats();
 });
 
-// Display stats in the console or UI
+// Display the resources in the console (or update UI)
 function displayStats() {
     console.log(`Cakes: ${cake.earned}`);
     console.log(`Farmers: ${farmer.earned}`);
@@ -141,39 +117,36 @@ function displayStats() {
     console.log(`Cows: ${cow.earned}`);
     console.log(`Bakers: ${baker.earned}`);
     console.log(`Sugar Masters: ${sugarMaster.earned}`);
-    console.log(`Furnace: ${tiers[equipment.furnace.level]}`);
-    console.log(`Water Bucket: ${tiers[equipment.waterBucket.level]}`);
-    console.log(`Milk Bottle: ${tiers[equipment.milkBottle.level]}`);
-    console.log(`Hoe: ${tiers[equipment.hoe.level]}`);
+    console.log(`Hoes: ${hoe.earned}`);
+    console.log(`Furnaces: ${furnace.earned}`);
+    console.log(`Water: ${water.earned}`);
+    console.log(`Seed: ${seed.earned}`);
     console.log(`Total cakes per click: ${player.cakesPerClick}`);
     console.log(`Total cakes: ${player.cakes}`);
 }
 
-// Update function for the UI
+// Function to update stats on the screen
 function updateStats() {
     displayStats();
 }
 
-// Attach buttons to HTML on page load
-window.onload = function () {
-    createButton(cakeClicker, "gameContainer");
-    createButton(farmersButton, "upgradesContainer");
-    createButton(chickensButton, "upgradesContainer");
-    createButton(cowsButton, "upgradesContainer");
-    createButton(bakersButton, "upgradesContainer");
-    createButton(sugarMastersButton, "upgradesContainer");
-    
-    // Equipment upgrade buttons
-    createButton(furnaceButton, "equipmentContainer");
-    createButton(waterBucketButton, "equipmentContainer");
-    createButton(milkBottleButton, "equipmentContainer");
-    createButton(hoeButton, "equipmentContainer");
+// Simulating some button clicks
+cakeClicker.onClick();
+farmersButton.onClick();
+chickensButton.onClick();
+cowsButton.onClick();
+bakersButton.onClick();
+sugarMastersButton.onClick();
+hoeButton.onClick();
+furnaceButton.onClick();
+waterButton.onClick();
+seedButton.onClick();
 
-    // Options and settings buttons
-    createButton(optionsButton, "optionsContainer");
-    createButton(saveButton, "optionsContainer");
-    createButton(wipeSaveButton, "optionsContainer");
-    createButton(settingsButton, "optionsContainer");
-    createButton(volumeButton, "optionsContainer");
-    createButton(otherSettingsButton, "optionsContainer");
-};
+// Show the updated stats
+statsButton.onClick();
+
+// Example usage of upgrade logic (e.g., upgrading the Hoe costs 10 cakes, increases cakes per click by 2)
+upgradeResource(hoe, 10, 2);
+upgradeResource(furnace, 50, 10);
+upgradeResource(water, 20, 5);
+upgradeResource(seed, 30, 4);
