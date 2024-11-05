@@ -21,6 +21,25 @@ function Button(name, description, onClickFunction) {
     this.onClick = onClickFunction;
 }
 
+// Define tiers for items (standard, stone, iron, gold, diamond)
+const tiers = {
+    standard: { cost: 100, cps: 1 },
+    stone: { cost: 500, cps: 5 },
+    iron: { cost: 2000, cps: 10 },
+    gold: { cost: 5000, cps: 20 },
+    diamond: { cost: 10000, cps: 50 }
+};
+
+// Helper function to create tiered resources
+function createTieredResource(name, baseDescription, tier) {
+    return new Resource(
+        `${name} (${tier})`,
+        `${baseDescription} (${tier})`,
+        tiers[tier].cost,
+        tiers[tier].cps
+    );
+}
+
 // Global resources
 let cake = new Resource("Cake", "These are the cakes you clicked!");
 let cursor = new Resource("Cursor", "These cursors generate 1 cake per second.", 10, 1);
@@ -29,6 +48,35 @@ let cow = new Resource("Cow", "These are the cows that produce the milk for your
 let chicken = new Resource("Chicken", "These are the chickens that create eggs for your cake.", 1000, 10);
 let sugarMaster = new Resource("Sugar Master", "These are the sugar experts who will elevate your cake.", 3000, 20);
 let baker = new Resource("Baker", "These are the bakers who prepare your cake.", 5000, 50);
+
+// Add new tiered resources for Hoes
+let hoeStandard = createTieredResource("Hoe", "Used for farming", "standard");
+let hoeStone = createTieredResource("Hoe", "Used for farming", "stone");
+let hoeIron = createTieredResource("Hoe", "Used for farming", "iron");
+let hoeGold = createTieredResource("Hoe", "Used for farming", "gold");
+let hoeDiamond = createTieredResource("Hoe", "Used for farming", "diamond");
+
+// Add new tiered resources for Water Buckets
+let waterBucketStandard = createTieredResource("Water Bucket", "Used for watering crops", "standard");
+let waterBucketStone = createTieredResource("Water Bucket", "Used for watering crops", "stone");
+let waterBucketIron = createTieredResource("Water Bucket", "Used for watering crops", "iron");
+let waterBucketGold = createTieredResource("Water Bucket", "Used for watering crops", "gold");
+let waterBucketDiamond = createTieredResource("Water Bucket", "Used for watering crops", "diamond");
+
+// Add new tiered resources for Milk Bottles
+let milkBottleStandard = createTieredResource("Milk Bottle", "Used for milk production", "standard");
+let milkBottleStone = createTieredResource("Milk Bottle", "Used for milk production", "stone");
+let milkBottleIron = createTieredResource("Milk Bottle", "Used for milk production", "iron");
+let milkBottleGold = createTieredResource("Milk Bottle", "Used for milk production", "gold");
+let milkBottleDiamond = createTieredResource("Milk Bottle", "Used for milk production", "diamond");
+
+// Add new tiered resources for Furnaces
+let furnaceStandard = createTieredResource("Furnace", "Used for baking", "standard");
+let furnaceStone = createTieredResource("Furnace", "Used for baking", "stone");
+let furnaceIron = createTieredResource("Furnace", "Used for baking", "iron");
+let furnaceGold = createTieredResource("Furnace", "Used for baking", "gold");
+let furnaceDiamond = createTieredResource("Furnace", "Used for baking", "diamond");
+
 
 // Player object with initial settings
 let player = {
@@ -88,6 +136,74 @@ let sugarMastersButton = new Button("Sugar Master", `Costs ${sugarMaster.baseCos
 
 let bakersButton = new Button("Baker", `Costs ${baker.baseCost} cakes, generates ${baker.cakesPerSecond} cakes per second.`, function () {
     purchaseItem(baker);
+});
+
+// Buttons for purchasing new tiered resources for Hoes
+let hoeStandardButton = new Button("Hoe (Standard)", `Costs ${hoeStandard.baseCost} cakes, generates ${hoeStandard.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(hoeStandard);
+});
+let hoeStoneButton = new Button("Hoe (Stone)", `Costs ${hoeStone.baseCost} cakes, generates ${hoeStone.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(hoeStone);
+});
+let hoeIronButton = new Button("Hoe (Iron)", `Costs ${hoeIron.baseCost} cakes, generates ${hoeIron.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(hoeIron);
+});
+let hoeGoldButton = new Button("Hoe (Gold)", `Costs ${hoeGold.baseCost} cakes, generates ${hoeGold.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(hoeGold);
+});
+let hoeDiamondButton = new Button("Hoe (Diamond)", `Costs ${hoeDiamond.baseCost} cakes, generates ${hoeDiamond.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(hoeDiamond);
+});
+
+// Buttons for purchasing Water Buckets with tiers
+let waterBucketStandardButton = new Button("Water Bucket (Standard)", `Costs ${waterBucketStandard.baseCost} cakes, generates ${waterBucketStandard.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(waterBucketStandard);
+});
+let waterBucketStoneButton = new Button("Water Bucket (Stone)", `Costs ${waterBucketStone.baseCost} cakes, generates ${waterBucketStone.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(waterBucketStone);
+});
+let waterBucketIronButton = new Button("Water Bucket (Iron)", `Costs ${waterBucketIron.baseCost} cakes, generates ${waterBucketIron.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(waterBucketIron);
+});
+let waterBucketGoldButton = new Button("Water Bucket (Gold)", `Costs ${waterBucketGold.baseCost} cakes, generates ${waterBucketGold.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(waterBucketGold);
+});
+let waterBucketDiamondButton = new Button("Water Bucket (Diamond)", `Costs ${waterBucketDiamond.baseCost} cakes, generates ${waterBucketDiamond.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(waterBucketDiamond);
+});
+
+// Buttons for purchasing Milk Bottles with tiers
+let milkBottleStandardButton = new Button("Milk Bottle (Standard)", `Costs ${milkBottleStandard.baseCost} cakes, generates ${milkBottleStandard.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(milkBottleStandard);
+});
+let milkBottleStoneButton = new Button("Milk Bottle (Stone)", `Costs ${milkBottleStone.baseCost} cakes, generates ${milkBottleStone.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(milkBottleStone);
+});
+let milkBottleIronButton = new Button("Milk Bottle (Iron)", `Costs ${milkBottleIron.baseCost} cakes, generates ${milkBottleIron.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(milkBottleIron);
+});
+let milkBottleGoldButton = new Button("Milk Bottle (Gold)", `Costs ${milkBottleGold.baseCost} cakes, generates ${milkBottleGold.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(milkBottleGold);
+});
+let milkBottleDiamondButton = new Button("Milk Bottle (Diamond)", `Costs ${milkBottleDiamond.baseCost} cakes, generates ${milkBottleDiamond.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(milkBottleDiamond);
+});
+
+// Buttons for purchasing Furnaces with tiers
+let furnaceStandardButton = new Button("Furnace (Standard)", `Costs ${furnaceStandard.baseCost} cakes, generates ${furnaceStandard.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(furnaceStandard);
+});
+let furnaceStoneButton = new Button("Furnace (Stone)", `Costs ${furnaceStone.baseCost} cakes, generates ${furnaceStone.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(furnaceStone);
+});
+let furnaceIronButton = new Button("Furnace (Iron)", `Costs ${furnaceIron.baseCost} cakes, generates ${furnaceIron.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(furnaceIron);
+});
+let furnaceGoldButton = new Button("Furnace (Gold)", `Costs ${furnaceGold.baseCost} cakes, generates ${furnaceGold.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(furnaceGold);
+});
+let furnaceDiamondButton = new Button("Furnace (Diamond)", `Costs ${furnaceDiamond.baseCost} cakes, generates ${furnaceDiamond.cakesPerSecond} cakes per second.`, function () {
+    purchaseItem(furnaceDiamond);
 });
 
 // Upgrade logic for specific resources
