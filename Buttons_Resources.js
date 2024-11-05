@@ -21,13 +21,13 @@ function Button(name, description, onClickFunction) {
     this.onClick = onClickFunction;
 }
 
-// Define tiers for items (standard, stone, iron, gold, diamond)
-const tiers = {
-    standard: { cost: 100, cps: 1 },
-    stone: { cost: 500, cps: 5 },
-    iron: { cost: 2000, cps: 10 },
-    gold: { cost: 5000, cps: 20 },
-    diamond: { cost: 10000, cps: 50 }
+// Define costs and CPS percentages for each tier
+const tierData = {
+    standard: { cost: 100, cpsMultiplier: 1.1 },
+    stone: { cost: 500, cpsMultiplier: 1.2 },
+    iron: { cost: 2000, cpsMultiplier: 1.5 },
+    gold: { cost: 5000, cpsMultiplier: 2 },
+    diamond: { cost: 10000, cpsMultiplier: 3 }
 };
 
 // Helper function to create tiered resources
