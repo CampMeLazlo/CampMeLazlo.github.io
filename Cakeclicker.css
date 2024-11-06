@@ -81,9 +81,9 @@ button{
 }
 
 .Upgrades{
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	 gap: 10px;
+   display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
     width: 85%;
     height: 200px;
     padding-left: 50px;
