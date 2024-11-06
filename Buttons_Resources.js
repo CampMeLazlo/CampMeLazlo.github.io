@@ -159,18 +159,6 @@ function clickCake() {
     updateCakeCount();
 }
 
- function cakeGen() {
-    player.cakes += player.cakesPerSecond;
-    updateStats();
-    updateCakeCount();
-}
-// Passive cake generation function
-function startPassiveCakeGeneration() {
-    setInterval(cakeGen, 1000);
-    };
-
-    setTimeout(cakeGen, 1000);
-
 // Purchase function for store items
 function purchaseItem(item) {
     if (player.cakes >= item.currentCost) {
