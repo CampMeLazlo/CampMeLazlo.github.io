@@ -27,9 +27,9 @@
            <button id="Stats" onclick="StatsToggle()">
                <img src="Stats Button.png">
             </button>
-            <h2>(insert shop name here)</h2>
+            <h2>Cake Shop</h2>
             <h2 id="cake">0 cakes</h2>
-            <p>Cakes per second</p>
+            <p id="cps">Cakes per second</p>
             <button id="cakeClicker" onclick="clickCake()">
               <img class="cake" src="Cake.png" alt="Cake">
             </button>
@@ -45,55 +45,67 @@
          <h2>Upgrades</h2>
          <div class="top-right">
             <div class="Upgrades">
-              <img class="tier" src="standard_furnace.png">
-              <img class="tier" src="wooden_bucket.png">
-              <img class="tier" src="milk.png">
-              <img class="tier" src="wooden_hoe.png">
-              <img class="tier" src="Copper Furnace v2.png">
-              <img class="tier" src="stone_bucket.png">
-              <img class="tier" src="golden_milk.png">
-              <img class="tier" src="stone_hoe.png">
-              <img class="tier" src="Iron Furnace v2.png">
-              <img class="tier" src="iron_bucket.png">
-              <img class="tier" src="milk.png">
-              <img class="tier" src="iron_hoe.png">
-              <img class="tier" src="Gold Furnace v2.png">
-              <img class="tier" src="gold_bucket.png">
-              <img class="tier" src="milk.png">
-              <img class="tier" src="golden_hoe.png">
-              <img class="tier" src="Diamond Furnace v2.png">
-              <img class="tier" src="diamond_bucket.png">
-              <img class="tier" src="milk.png">
-              <img class="tier" src="diamond_hoe.png">
+               <button><img class="tier" src="standard_furnace.png" alt="Standard Furnace"></button>
+               <button><img class="tier" src="wooden_bucket.png" alt="Wooden Bucket"></button>
+               <button><img class="tier" src="milk.png" alt="Milk"></button>
+               <button><img class="tier" src="wooden_hoe.png" alt="Wooden Hoe"></button>
+               <button><img class="tier" src="Copper Furnace v2.png" alt="Copper Furnace"></button>
+               <button><img class="tier" src="stone_bucket.png" alt="Stone Bucket"></button>
+               <button><img class="tier" src="golden_milk.png" alt="Golden Milk"></button>
+               <button><img class="tier" src="stone_hoe.png" alt="Stone Hoe"></button>
+               <button><img class="tier" src="Iron Furnace v2.png" alt="Iron Furnace"></button>
+               <button><img class="tier" src="iron_bucket.png" alt="Iron Bucket"></button>
+               <button><img class="tier" src="milk.png" alt="Milk"></button>
+               <button><img class="tier" src="iron_hoe.png" alt="Iron Hoe"></button>
+               <button><img class="tier" src="Gold Furnace v2.png" alt="Gold Furnace"></button>
+               <button><img class="tier" src="gold_bucket.png" alt="Gold Bucket"></button>
+               <button><img class="tier" src="milk.png" alt="Milk"></button>
+               <button><img class="tier" src="golden_hoe.png" alt="Golden Hoe"></button>
+               <button><img class="tier" src="Diamond Furnace v2.png" alt="Diamond Furnace"></button>
+               <button><img class="tier" src="diamond_bucket.png" alt="Diamond Bucket"></button>
+               <button><img class="tier" src="milk.png" alt="Milk"></button>
+               <button><img class="tier" src="diamond_hoe.png" alt="Diamond Hoe"></button>
            </div>
          </div>
          <h2>Store</h2>
         <div class="Buildings">
          <div class="image-container">
+            <button id="CursorButton" class="" onclick="clickCursor()">
             <div class="store-wrapper" style="background-image: url('store_button.png');">
                 <img class="store" src="Click.png" alt="Click">
                 <p class="Item">0 Cursors</p>
             </div>
+            </button>
+         <button id="farmersButton" onclick="clickFarmer()">
             <div class="store-wrapper" style="background-image: url('store_button.png');">
                 <img class="store" src="Farmer.png" alt="Farmer">
                 <p class="Item">0 Farmers</p>
             </div>
+         </button>
+         <button id="cowsButton" onclick="clickCow()">
             <div class="store-wrapper" style="background-image: url('store_button.png');">
                 <img class="store" src="Cow.png" alt="Cow">
                 <p class="Item">0 Cows</p>
             </div>
+         </button>
+         <button id="chickensButton" onclick="clickChicken()">
             <div class="store-wrapper" style="background-image: url('store_button.png');">
                 <img class="store" src="Chicken.png" alt="Chicken">
                 <p class="Item">0 Chickens</p>
             </div>
+         </button>
+         <button id="sugarMastersButton" onclick="clickMaster()">
             <div class="store-wrapper" style="background-image: url('store_button.png');">
                 <img class="store" src="Sugar Master.png" alt="Sugar Master">
                 <p class="Item">0 Sugar Masters</p>
             </div>
+         </button>
+         <button id="bakersButton" onclick="clickBaker()">
             <div class="store-wrapper" style="background-image: url('store_button.png');">
                 <img class="store" src="Baker.png" alt="Baker">
                 <p class="Item">0 Bakers</p>
             </div>
+         </button>
         </div>
       </div>
       </div>
