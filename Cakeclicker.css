@@ -15,9 +15,9 @@ body {
 }
 
 .cake{
-    width: 100px;
-    height: 100px;
-
+    width: 150px;
+    height: 150px;
+    padding-top: 30%;
 }
 button {
     background: none;
@@ -25,7 +25,9 @@ button {
     padding: 0;
     cursor: pointer;
 }
-
+button#Options {
+    padding-right: 60%;
+}
 
 .container {
     display: flex; 
