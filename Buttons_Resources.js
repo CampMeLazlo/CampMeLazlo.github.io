@@ -190,33 +190,39 @@ let cursorButton = new Button("Cursor", `Costs ${cursor.baseCost} cakes, generat
 
 function clickCursor() {
     purchaseItem(cursor);
+    document.getElementById("cursor").innerHTML = `${cursor.earned} Cursors`;
 };
 
 let farmersButton = new Button("Farmer", `Costs ${farmer.baseCost} cakes, generates ${farmer.cakesPerSecond} cakes per second.`);
 
 function clickFarmer() {
     purchaseItem(farmer);
+    document.getElementById("farmer").innerHTML = `${farmer.earned} Farmers`;
 };
 
 let cowsButton = new Button("Cow", `Costs ${cow.baseCost} cakes, generates ${cow.cakesPerSecond} cakes per second.`);
 
 function clickCow () {
     purchaseItem(cow);
+    document.getElementById("cow").innerHTML = `${cow.earned} Cows`;
 };
 
 let chickensButton = new Button("Chicken", `Costs ${chicken.baseCost} cakes, generates ${chicken.cakesPerSecond} cakes per second.`);
     function clickChicken() {
     purchaseItem(chicken);
+    document.getElementById("chicken").innerHTML = `${chicken.earned} Chickens`;
 };
 
 let sugarMastersButton = new Button("Sugar Master", `Costs ${sugarMaster.baseCost} cakes, generates ${sugarMaster.cakesPerSecond} cakes per second.`)
     function clickMaster() {
     purchaseItem(sugarMaster);
+    document.getElementById("sugar").innerHTML = `${sugarMaster.earned} Sugar Masters`;
 };
 
 let bakersButton = new Button("Baker", `Costs ${baker.baseCost} cakes, generates ${baker.cakesPerSecond} cakes per second.`) 
     function clickBaker() {
     purchaseItem(baker);
+    document.getElementById("baker").innerHTML = `${baker.earned} Bakers`;
 };
 
 // Buttons for purchasing new tiered resources for Hoes
