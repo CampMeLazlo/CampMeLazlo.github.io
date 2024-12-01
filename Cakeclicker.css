@@ -80,6 +80,10 @@ button#Options {
     overflow-y: auto;
 }
 
+.top-right::-webkit-scrollbar {
+    display: none; 
+}
+
 .Upgrades{
     width: 85%;
     height: 200px;
