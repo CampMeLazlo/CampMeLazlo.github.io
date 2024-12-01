@@ -87,7 +87,7 @@ button#Options {
     
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    gap: 5px;
     justify-items: center; 
     align-items: center;
 }
