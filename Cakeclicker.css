@@ -137,7 +137,7 @@ p.Item{
 .area{
     vertical-align: top;
     display: inline-block;
-    max-width: 100%;
+    max-width: 80%;
     margin-bottom: 10px;
     object-fit: cover;
     
