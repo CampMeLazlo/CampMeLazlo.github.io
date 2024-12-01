@@ -136,7 +136,7 @@ p.Item{
     object-fit: cover;
     
     border: 10px solid transparent;
-    border-image: url('border v2 - H.png') 30 round;
+    border-image: url('Border v2 - H.png') 30 round;
 }
 
 image-stack img {
