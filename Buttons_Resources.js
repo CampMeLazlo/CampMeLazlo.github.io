@@ -98,15 +98,18 @@ const tier = {
     diamond: { cost: 10000, cpsMultiplier: 3 }
 };
 
-// Helper function to create tiered resources
-function createTieredResource(name, baseDescription, tier) {
+function createTieredResource(name, baseDescription, tierName) {
+    if (!tier[tierName]) {
+        throw new Error(`Tier "${tierName}" is not defined in the tier object.`);
+    }
     return new Resource(
-        `${name} (${tier})`,
-        `${baseDescription} (${tier})`,
-        tiers[tier].cost,
-        tiers[tier].cps
+        `${name} (${tierName})`,
+        `${baseDescription} (${tierName})`,
+        tier[tierName].cost,
+        tier[tierName].cpsMultiplier
     );
 }
+
 
 // Global resources
 let cake = new Resource("Cake", "These are the cakes you clicked!");
