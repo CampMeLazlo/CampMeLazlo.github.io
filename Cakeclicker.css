@@ -19,6 +19,7 @@ body {
     height: 150px;
     padding-top: 30%;
 }
+
 button {
     background: none;
     border: none;
@@ -44,7 +45,6 @@ button#Options {
     text-align: center;
     box-sizing: border-box;
     overflow-y: auto;
-
      border: 10px solid transparent;
     border-image: url('Border v2 - H.png') 30 round;
 }
@@ -60,8 +60,7 @@ button#Options {
     background-position: center;
     background-size: cover;
     padding-top: 25px;
-
-     border: 10px solid transparent;
+    border: 10px solid transparent;
     border-image: url('Border v2 - H.png') 30 round;
 }
 
@@ -80,21 +79,20 @@ button#Options {
     text-align: center;
     box-sizing: border-box;
     overflow-y: auto;
-
-     border: 10px solid transparent;
+    border: 10px solid transparent;
     border-image: url('Border v2 - H.png') 30 round;
 }
 
 .top-right{
     overflow-y: auto;
-
-     border: 10px solid transparent;
+    border: 10px solid transparent;
     border-image: url('Border v2 - H.png') 30 round;
 }
 
 .top-right::-webkit-scrollbar {
     display: none; 
 }
+
 .left::-webkit-scrollbar {
     display: none; 
 }
@@ -107,7 +105,6 @@ button#Options {
     width: 85%;
     height: 200px;
     padding-left: 50px;
-    
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 5px;
@@ -157,8 +154,7 @@ p.Item{
     font-family: "Comic Sans MS", "Comic Sans";
 }
 
-.area{
-    
+.area{   
     display: inline-block;
     max-width: 90%;
     height: 100%;
@@ -188,5 +184,4 @@ image-stack img {
 
 #game.filterOn .things.cantAfford.notOwned{
     filter:blur(3px); 
-    
 }
