@@ -44,6 +44,9 @@ button#Options {
     text-align: center;
     box-sizing: border-box;
     overflow-y: auto;
+
+     border: 10px solid transparent;
+    border-image: url('Border v2 - H.png') 30 round;
 }
 
 
@@ -57,6 +60,9 @@ button#Options {
     background-position: center;
     background-size: cover;
     padding-top: 25px;
+
+     border: 10px solid transparent;
+    border-image: url('Border v2 - H.png') 30 round;
 }
 
 .top{
@@ -74,14 +80,26 @@ button#Options {
     text-align: center;
     box-sizing: border-box;
     overflow-y: auto;
+
+     border: 10px solid transparent;
+    border-image: url('Border v2 - H.png') 30 round;
 }
 
 .top-right{
     overflow-y: auto;
+
+     border: 10px solid transparent;
+    border-image: url('Border v2 - H.png') 30 round;
 }
 
 .top-right::-webkit-scrollbar {
     display: none; 
+}
+.left::-webkit-scrollbar {
+    display: none; 
+
+     border: 10px solid transparent;
+    border-image: url('Border v2 - H.png') 30 round;
 }
 
 .Upgrades{
