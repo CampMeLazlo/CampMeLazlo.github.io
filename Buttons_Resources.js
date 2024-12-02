@@ -90,7 +90,7 @@ let player = {
 };
 
 // Define costs and CPS percentages for each tier
-const tiers = {
+const tier = {
     standard: { cost: 100, cpsMultiplier: 1.1 },
     stone: { cost: 500, cpsMultiplier: 1.2 },
     iron: { cost: 2000, cpsMultiplier: 1.5 },
