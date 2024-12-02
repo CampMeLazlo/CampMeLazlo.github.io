@@ -89,14 +89,6 @@ let player = {
     cakesPerSecond: 0 // Starts with 0 passive cakes per second
 };
 
-function startPassiveCakeGeneration() {
-    setInterval(() => {
-        gameState.cakes += gameState.cakesPerSecond;
-        updateStats(); // Ensure this function exists as well
-    }, 1000); // 1 second intervals
-}
-
-
 // Define costs and CPS percentages for each tier
 const tier = {
     standard: { cost: 100, cpsMultiplier: 1.1 },
@@ -368,4 +360,3 @@ function updateStats() {
 
 // Initialize the game and start passive generation
 updateStats();
-startPassiveCakeGeneration();
