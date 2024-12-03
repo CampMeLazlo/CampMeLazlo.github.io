@@ -155,6 +155,8 @@ function createTieredUpgrade(name, baseCost, cpsIncreasePercent, tierMultiplier)
     };
 }
 
+
+/*
 // Define tiered upgrades for Hoes
 const upgradeHoeStandard = createTieredUpgrade("Hoe (Standard)", 100, 5, 1);
 const upgradeHoeStone = createTieredUpgrade("Hoe (Stone)", 500, 5, 2);
@@ -181,7 +183,76 @@ const upgradeFurnaceStandard = createTieredUpgrade("Furnace (Standard)", 250, 7,
 const upgradeFurnaceStone = createTieredUpgrade("Furnace (Stone)", 800, 7, 2);
 const upgradeFurnaceIron = createTieredUpgrade("Furnace (Iron)", 3500, 7, 3);
 const upgradeFurnaceGold = createTieredUpgrade("Furnace (Gold)", 8500, 7, 4);
-const upgradeFurnaceDiamond = createTieredUpgrade("Furnace (Diamond)", 17000, 7, 5);
+const upgradeFurnaceDiamond = createTieredUpgrade("Furnace (Diamond)", 17000, 7, 5); */
+
+// Upgrade handlers for Hoes
+function upgradeHoeStandard() {
+    applyTieredUpgrade("Hoe (Standard)", 100, 5, 1);
+}
+function upgradeHoeStone() {
+    applyTieredUpgrade("Hoe (Stone)", 500, 5, 2);
+}
+function upgradeHoeIron() {
+    applyTieredUpgrade("Hoe (Iron)", 2000, 5, 3);
+}
+function upgradeHoeGold() {
+    applyTieredUpgrade("Hoe (Gold)", 5000, 5, 4);
+}
+function upgradeHoeDiamond() {
+    applyTieredUpgrade("Hoe (Diamond)", 10000, 5, 5);
+}
+
+// Upgrade handlers for Water Buckets
+function upgradeBucketStandard() {
+    applyTieredUpgrade("Water Bucket (Standard)", 150, 4, 1);
+}
+function upgradeBucketStone() {
+    applyTieredUpgrade("Water Bucket (Stone)", 600, 4, 2);
+}
+function upgradeBucketIron() {
+    applyTieredUpgrade("Water Bucket (Iron)", 2500, 4, 3);
+}
+function upgradeBucketGold() {
+    applyTieredUpgrade("Water Bucket (Gold)", 6000, 4, 4);
+}
+function upgradeBucketDiamond() {
+    applyTieredUpgrade("Water Bucket (Diamond)", 12000, 4, 5);
+}
+
+// Upgrade handlers for Milk Bottles
+function upgradeMilkStandard() {
+    applyTieredUpgrade("Milk Bottle (Standard)", 200, 6, 1);
+}
+function upgradeMilkStone() {
+    applyTieredUpgrade("Milk Bottle (Stone)", 700, 6, 2);
+}
+function upgradeMilkIron() {
+    applyTieredUpgrade("Milk Bottle (Iron)", 3000, 6, 3);
+}
+function upgradeMilkGold() {
+    applyTieredUpgrade("Milk Bottle (Gold)", 7500, 6, 4);
+}
+function upgradeMilkDiamond() {
+    applyTieredUpgrade("Milk Bottle (Diamond)", 15000, 6, 5);
+}
+
+// Upgrade handlers for Furnaces
+function upgradeFurnaceStandard() {
+    applyTieredUpgrade("Furnace (Standard)", 250, 7, 1);
+}
+function upgradeFurnaceStone() {
+    applyTieredUpgrade("Furnace (Stone)", 800, 7, 2);
+}
+function upgradeFurnaceIron() {
+    applyTieredUpgrade("Furnace (Iron)", 3500, 7, 3);
+}
+function upgradeFurnaceGold() {
+    applyTieredUpgrade("Furnace (Gold)", 8500, 7, 4);
+}
+function upgradeFurnaceDiamond() {
+    applyTieredUpgrade("Furnace (Diamond)", 17000, 7, 5);
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
     // Attach event listeners for upgrades
