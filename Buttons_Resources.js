@@ -120,40 +120,6 @@ let chicken = new Resource("Chicken", "These are the chickens that create eggs f
 let sugarMaster = new Resource("Sugar Master", "These are the sugar experts who will elevate your cake.", 3000, 20);
 let baker = new Resource("Baker", "These are the bakers who prepare your cake.", 5000, 50);
 
-// Add new tiered resources for Hoes
-let hoeStandard = createTieredResource("Hoe", "Used for farming", "standard");
-let hoeStone = createTieredResource("Hoe", "Used for farming", "stone");
-let hoeIron = createTieredResource("Hoe", "Used for farming", "iron");
-let hoeGold = createTieredResource("Hoe", "Used for farming", "gold");
-let hoeDiamond = createTieredResource("Hoe", "Used for farming", "diamond");
-
-// Add new tiered resources for Water Buckets
-let waterBucketStandard = createTieredResource("Water Bucket", "Used for watering crops", "standard");
-let waterBucketStone = createTieredResource("Water Bucket", "Used for watering crops", "stone");
-let waterBucketIron = createTieredResource("Water Bucket", "Used for watering crops", "iron");
-let waterBucketGold = createTieredResource("Water Bucket", "Used for watering crops", "gold");
-let waterBucketDiamond = createTieredResource("Water Bucket", "Used for watering crops", "diamond");
-
-// Add new tiered resources for Milk Bottles
-let milkBottleStandard = createTieredResource("Milk Bottle", "Used for milk production", "standard");
-let milkBottleStone = createTieredResource("Milk Bottle", "Used for milk production", "stone");
-let milkBottleIron = createTieredResource("Milk Bottle", "Used for milk production", "iron");
-let milkBottleGold = createTieredResource("Milk Bottle", "Used for milk production", "gold");
-let milkBottleDiamond = createTieredResource("Milk Bottle", "Used for milk production", "diamond");
-
-// Add new tiered resources for Furnaces
-let furnaceStandard = createTieredResource("Furnace", "Used for baking", "standard");
-let furnaceStone = createTieredResource("Furnace", "Used for baking", "stone");
-let furnaceIron = createTieredResource("Furnace", "Used for baking", "iron");
-let furnaceGold = createTieredResource("Furnace", "Used for baking", "gold");
-let furnaceDiamond = createTieredResource("Furnace", "Used for baking", "diamond");
-
-
-
-function updateCakeCount() {
-    document.getElementById("cake").innerHTML = `${player.cakes} cakes`;
-}
-
 // Function to handle cake click (make sure this is global for HTML access)
 function clickCake() {
     player.cakes += player.cakesPerClick;
@@ -161,6 +127,85 @@ function clickCake() {
     updateStats();
     updateCakeCount();
 }
+
+
+function updateCakeCount() {
+    document.getElementById("cake").innerHTML = `${player.cakes} cakes`;
+}
+
+// Function to apply tiered item upgrades
+function applyTieredUpgrade(itemName, baseCost, cpsIncreasePercent, tierMultiplier) {
+    const tierEffect = cpsIncreasePercent * tierMultiplier; // Calculate CPS increase based on tier
+    if (player.cakes >= baseCost) {
+        player.cakes -= baseCost; // Deduct cost
+        player.cakesPerSecond *= (1 + tierEffect / 100); // Apply CPS increase
+        alert(`${itemName} applied! CPS increased by ${tierEffect}%.`);
+        updateStats(); // Update the stats on screen
+    } else {
+        alert(`You need ${baseCost} cakes to purchase ${itemName}.`);
+    }
+}
+
+// Function to create tiered upgrade handlers
+function createTieredUpgrade(name, baseCost, cpsIncreasePercent, tierMultiplier) {
+    return function () {
+        applyTieredUpgrade(name, baseCost, cpsIncreasePercent, tierMultiplier);
+    };
+}
+
+// Define tiered upgrades for Hoes
+const upgradeHoeStandard = createTieredUpgrade("Hoe (Standard)", 100, 5, 1);
+const upgradeHoeStone = createTieredUpgrade("Hoe (Stone)", 500, 5, 2);
+const upgradeHoeIron = createTieredUpgrade("Hoe (Iron)", 2000, 5, 3);
+const upgradeHoeGold = createTieredUpgrade("Hoe (Gold)", 5000, 5, 4);
+const upgradeHoeDiamond = createTieredUpgrade("Hoe (Diamond)", 10000, 5, 5);
+
+// Define tiered upgrades for Water Buckets
+const upgradeBucketStandard = createTieredUpgrade("Water Bucket (Standard)", 150, 4, 1);
+const upgradeBucketStone = createTieredUpgrade("Water Bucket (Stone)", 600, 4, 2);
+const upgradeBucketIron = createTieredUpgrade("Water Bucket (Iron)", 2500, 4, 3);
+const upgradeBucketGold = createTieredUpgrade("Water Bucket (Gold)", 6000, 4, 4);
+const upgradeBucketDiamond = createTieredUpgrade("Water Bucket (Diamond)", 12000, 4, 5);
+
+// Define tiered upgrades for Milk Bottles
+const upgradeMilkStandard = createTieredUpgrade("Milk Bottle (Standard)", 200, 6, 1);
+const upgradeMilkStone = createTieredUpgrade("Milk Bottle (Stone)", 700, 6, 2);
+const upgradeMilkIron = createTieredUpgrade("Milk Bottle (Iron)", 3000, 6, 3);
+const upgradeMilkGold = createTieredUpgrade("Milk Bottle (Gold)", 7500, 6, 4);
+const upgradeMilkDiamond = createTieredUpgrade("Milk Bottle (Diamond)", 15000, 6, 5);
+
+// Define tiered upgrades for Furnaces
+const upgradeFurnaceStandard = createTieredUpgrade("Furnace (Standard)", 250, 7, 1);
+const upgradeFurnaceStone = createTieredUpgrade("Furnace (Stone)", 800, 7, 2);
+const upgradeFurnaceIron = createTieredUpgrade("Furnace (Iron)", 3500, 7, 3);
+const upgradeFurnaceGold = createTieredUpgrade("Furnace (Gold)", 8500, 7, 4);
+const upgradeFurnaceDiamond = createTieredUpgrade("Furnace (Diamond)", 17000, 7, 5);
+
+// Attach event listeners for upgrades
+document.getElementById("hoeStandard").addEventListener("click", upgradeHoeStandard);
+document.getElementById("hoeStone").addEventListener("click", upgradeHoeStone);
+document.getElementById("hoeIron").addEventListener("click", upgradeHoeIron);
+document.getElementById("hoeGold").addEventListener("click", upgradeHoeGold);
+document.getElementById("hoeDiamond").addEventListener("click", upgradeHoeDiamond);
+
+document.getElementById("bucketStandard").addEventListener("click", upgradeBucketStandard);
+document.getElementById("bucketStone").addEventListener("click", upgradeBucketStone);
+document.getElementById("bucketIron").addEventListener("click", upgradeBucketIron);
+document.getElementById("bucketGold").addEventListener("click", upgradeBucketGold);
+document.getElementById("bucketDiamond").addEventListener("click", upgradeBucketDiamond);
+
+document.getElementById("milkStandard").addEventListener("click", upgradeMilkStandard);
+document.getElementById("milkStone").addEventListener("click", upgradeMilkStone);
+document.getElementById("milkIron").addEventListener("click", upgradeMilkIron);
+document.getElementById("milkGold").addEventListener("click", upgradeMilkGold);
+document.getElementById("milkDiamond").addEventListener("click", upgradeMilkDiamond);
+
+document.getElementById("furnaceStandard").addEventListener("click", upgradeFurnaceStandard);
+document.getElementById("furnaceStone").addEventListener("click", upgradeFurnaceStone);
+document.getElementById("furnaceIron").addEventListener("click", upgradeFurnaceIron);
+document.getElementById("furnaceGold").addEventListener("click", upgradeFurnaceGold);
+document.getElementById("furnaceDiamond").addEventListener("click", upgradeFurnaceDiamond);
+
 
 // Purchase function for store items
 function purchaseItem(item) {
