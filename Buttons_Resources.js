@@ -133,18 +133,20 @@ function updateCakeCount() {
     document.getElementById("cake").innerHTML = `${player.cakes} cakes`;
 }
 
-// Function to apply tiered item upgrades
 function applyTieredUpgrade(itemName, baseCost, cpsIncreasePercent, tierMultiplier) {
-    const tierEffect = cpsIncreasePercent * tierMultiplier; // Calculate CPS increase based on tier
     if (player.cakes >= baseCost) {
-        player.cakes -= baseCost; // Deduct cost
-        player.cakesPerSecond *= (1 + tierEffect / 100); // Apply CPS increase
+        // Deduct the cost and apply the upgrade
+        player.cakes -= baseCost; 
+        const tierEffect = cpsIncreasePercent * tierMultiplier;
+        player.cakesPerSecond *= (1 + tierEffect / 100);
         alert(`${itemName} applied! CPS increased by ${tierEffect}%.`);
-        updateStats(); // Update the stats on screen
+        updateStats();
     } else {
+        // Alert the user that they cannot afford the upgrade
         alert(`You need ${baseCost} cakes to purchase ${itemName}.`);
     }
 }
+
 
 // Function to create tiered upgrade handlers
 function createTieredUpgrade(name, baseCost, cpsIncreasePercent, tierMultiplier) {
