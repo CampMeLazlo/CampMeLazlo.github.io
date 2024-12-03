@@ -1,42 +1,52 @@
 // Function to save the game state to localStorage
 function saveGameState() {
-    const gameState = {
-        cakes: player.cakes,
-        cakesPerSecond: player.cakesPerSecond,
-        cakesPerClick: player.cakesPerClick,
-        resources: {
-            cursor: cursor.earned,
-            farmer: farmer.earned,
-            cow: cow.earned,
-            chicken: chicken.earned,
-            sugarMaster: sugarMaster.earned,
-            baker: baker.earned,
-        },
-    };
-    localStorage.setItem("cakeClickerSave", JSON.stringify(gameState));
-    console.log("Game saved automatically!");
+    try {
+        const gameState = {
+            cakes: player.cakes,
+            cakesPerSecond: player.cakesPerSecond,
+            cakesPerClick: player.cakesPerClick,
+            resources: {
+                cursor: cursor.earned,
+                farmer: farmer.earned,
+                cow: cow.earned,
+                chicken: chicken.earned,
+                sugarMaster: sugarMaster.earned,
+                baker: baker.earned,
+            },
+        };
+        localStorage.setItem("cakeClickerSave", JSON.stringify(gameState));
+        console.log("Game saved automatically!");
+    } catch (error) {
+        console.error("Error saving game:", error);
+    }
 }
 
 // Function to load the game state from localStorage
 function loadGameState() {
-    const savedState = localStorage.getItem("cakeClickerSave");
-    if (savedState) {
-        const gameState = JSON.parse(savedState);
-        player.cakes = gameState.cakes || 0;
-        player.cakesPerSecond = gameState.cakesPerSecond || 0;
-        player.cakesPerClick = gameState.cakesPerClick || 1;
+    try {
+        const savedState = localStorage.getItem("cakeClickerSave");
+        if (savedState) {
+            const gameState = JSON.parse(savedState);
 
-        // Load resources
-        cursor.earned = gameState.resources.cursor || 0;
-        farmer.earned = gameState.resources.farmer || 0;
-        cow.earned = gameState.resources.cow || 0;
-        chicken.earned = gameState.resources.chicken || 0;
-        sugarMaster.earned = gameState.resources.sugarMaster || 0;
-        baker.earned = gameState.resources.baker || 0;
+            // Load player data
+            player.cakes = gameState.cakes || 0;
+            player.cakesPerSecond = gameState.cakesPerSecond || 0;
+            player.cakesPerClick = gameState.cakesPerClick || 1;
 
-        console.log("Game loaded from saved state!");
-    } else {
-        console.log("No saved game found. Starting a new game.");
+            // Load resources
+            cursor.earned = gameState.resources?.cursor || 0;
+            farmer.earned = gameState.resources?.farmer || 0;
+            cow.earned = gameState.resources?.cow || 0;
+            chicken.earned = gameState.resources?.chicken || 0;
+            sugarMaster.earned = gameState.resources?.sugarMaster || 0;
+            baker.earned = gameState.resources?.baker || 0;
+
+            console.log("Game loaded from saved state!");
+        } else {
+            console.log("No saved game found. Starting a new game.");
+        }
+    } catch (error) {
+        console.error("Error loading game:", error);
     }
 }
 
@@ -45,12 +55,12 @@ function startAutoSave() {
     setInterval(saveGameState, 5000); // Save the game every 5 seconds
 }
 
-// Call loadGameState when the page loads and start auto-save
+// Initialize the game state on page load
 document.addEventListener("DOMContentLoaded", () => {
-    loadGameState();
-    updateStats(); // Ensure stats are updated to reflect loaded data
+    loadGameState(); // Load game state on page load
+    updateStats(); // Update stats to reflect the loaded state
     updateCakeCount(); // Update the cake count display
-    startAutoSave(); // Start auto-save
+    startAutoSave(); // Start auto-save process
 });
 
 // Function to wipe the save data
