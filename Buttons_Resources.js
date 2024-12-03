@@ -134,15 +134,17 @@ function updateCakeCount() {
 }
 
 function applyTieredUpgrade(itemName, baseCost, cpsIncreasePercent, tierMultiplier) {
+    console.log(`Attempting upgrade: ${itemName}, Cost: ${baseCost}, CPS Increase: ${cpsIncreasePercent}, Multiplier: ${tierMultiplier}`);
+    console.log(`Current cakes: ${player.cakes}, Current CPS: ${player.cakesPerSecond}`);
     if (player.cakes >= baseCost) {
-        // Deduct the cost and apply the upgrade
-        player.cakes -= baseCost; 
+        player.cakes -= baseCost;
         const tierEffect = cpsIncreasePercent * tierMultiplier;
         player.cakesPerSecond *= (1 + tierEffect / 100);
+        console.log(`Upgrade successful. New CPS: ${player.cakesPerSecond}`);
         alert(`${itemName} applied! CPS increased by ${tierEffect}%.`);
         updateStats();
     } else {
-        // Alert the user that they cannot afford the upgrade
+        console.log(`Insufficient cakes for upgrade: ${itemName}`);
         alert(`You need ${baseCost} cakes to purchase ${itemName}.`);
     }
 }
@@ -192,11 +194,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const attachListener = (id, handler) => {
         const element = document.getElementById(id);
         if (element) {
+            console.log(`Attaching listener to: ${id}`);
             element.addEventListener("click", handler);
         } else {
             console.warn(`Element with ID "${id}" not found in the DOM.`);
         }
     };
+
 
     // Hoes
     attachListener("hoeStandard", upgradeHoeStandard);
