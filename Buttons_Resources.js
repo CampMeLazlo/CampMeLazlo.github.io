@@ -183,30 +183,46 @@ const upgradeFurnaceIron = createTieredUpgrade("Furnace (Iron)", 3500, 7, 3);
 const upgradeFurnaceGold = createTieredUpgrade("Furnace (Gold)", 8500, 7, 4);
 const upgradeFurnaceDiamond = createTieredUpgrade("Furnace (Diamond)", 17000, 7, 5);
 
-// Attach event listeners for upgrades
-document.getElementById("hoeStandard").addEventListener("click", upgradeHoeStandard);
-document.getElementById("hoeStone").addEventListener("click", upgradeHoeStone);
-document.getElementById("hoeIron").addEventListener("click", upgradeHoeIron);
-document.getElementById("hoeGold").addEventListener("click", upgradeHoeGold);
-document.getElementById("hoeDiamond").addEventListener("click", upgradeHoeDiamond);
+document.addEventListener("DOMContentLoaded", () => {
+    // Attach event listeners for upgrades
+    const attachListener = (id, handler) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.addEventListener("click", handler);
+        } else {
+            console.warn(`Element with ID "${id}" not found in the DOM.`);
+        }
+    };
 
-document.getElementById("bucketStandard").addEventListener("click", upgradeBucketStandard);
-document.getElementById("bucketStone").addEventListener("click", upgradeBucketStone);
-document.getElementById("bucketIron").addEventListener("click", upgradeBucketIron);
-document.getElementById("bucketGold").addEventListener("click", upgradeBucketGold);
-document.getElementById("bucketDiamond").addEventListener("click", upgradeBucketDiamond);
+    // Hoes
+    attachListener("hoeStandard", upgradeHoeStandard);
+    attachListener("hoeStone", upgradeHoeStone);
+    attachListener("hoeIron", upgradeHoeIron);
+    attachListener("hoeGold", upgradeHoeGold);
+    attachListener("hoeDiamond", upgradeHoeDiamond);
 
-document.getElementById("milkStandard").addEventListener("click", upgradeMilkStandard);
-document.getElementById("milkStone").addEventListener("click", upgradeMilkStone);
-document.getElementById("milkIron").addEventListener("click", upgradeMilkIron);
-document.getElementById("milkGold").addEventListener("click", upgradeMilkGold);
-document.getElementById("milkDiamond").addEventListener("click", upgradeMilkDiamond);
+    // Water Buckets
+    attachListener("bucketStandard", upgradeBucketStandard);
+    attachListener("bucketStone", upgradeBucketStone);
+    attachListener("bucketIron", upgradeBucketIron);
+    attachListener("bucketGold", upgradeBucketGold);
+    attachListener("bucketDiamond", upgradeBucketDiamond);
 
-document.getElementById("furnaceStandard").addEventListener("click", upgradeFurnaceStandard);
-document.getElementById("furnaceStone").addEventListener("click", upgradeFurnaceStone);
-document.getElementById("furnaceIron").addEventListener("click", upgradeFurnaceIron);
-document.getElementById("furnaceGold").addEventListener("click", upgradeFurnaceGold);
-document.getElementById("furnaceDiamond").addEventListener("click", upgradeFurnaceDiamond);
+    // Milk Bottles
+    attachListener("milkStandard", upgradeMilkStandard);
+    attachListener("milkStone", upgradeMilkStone);
+    attachListener("milkIron", upgradeMilkIron);
+    attachListener("milkGold", upgradeMilkGold);
+    attachListener("milkDiamond", upgradeMilkDiamond);
+
+    // Furnaces
+    attachListener("furnaceStandard", upgradeFurnaceStandard);
+    attachListener("furnaceStone", upgradeFurnaceStone);
+    attachListener("furnaceIron", upgradeFurnaceIron);
+    attachListener("furnaceGold", upgradeFurnaceGold);
+    attachListener("furnaceDiamond", upgradeFurnaceDiamond);
+});
+
 
 
 // Purchase function for store items
