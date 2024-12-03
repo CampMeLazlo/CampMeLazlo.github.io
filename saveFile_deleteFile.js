@@ -14,7 +14,7 @@ function saveGameState() {
         },
     };
     localStorage.setItem("cakeClickerSave", JSON.stringify(gameState));
-    console.log("Game saved!");
+    console.log("Game saved automatically!");
 }
 
 // Function to load the game state from localStorage
@@ -34,18 +34,18 @@ function loadGameState() {
         sugarMaster.earned = gameState.resources.sugarMaster || 0;
         baker.earned = gameState.resources.baker || 0;
 
-        console.log("Game loaded!");
+        console.log("Game loaded from saved state!");
     } else {
-        console.log("No save data found. Starting a new game.");
+        console.log("No saved game found. Starting a new game.");
     }
 }
 
-// Function to periodically save the game state
+// Function to start auto-saving at regular intervals
 function startAutoSave() {
-    setInterval(saveGameState, 5000); // Save every 5 seconds
+    setInterval(saveGameState, 5000); // Save the game every 5 seconds
 }
 
-// Call loadGameState when the page loads
+// Call loadGameState when the page loads and start auto-save
 document.addEventListener("DOMContentLoaded", () => {
     loadGameState();
     updateStats(); // Ensure stats are updated to reflect loaded data
