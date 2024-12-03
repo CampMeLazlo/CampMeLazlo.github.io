@@ -185,6 +185,48 @@ const upgradeFurnaceIron = createTieredUpgrade("Furnace (Iron)", 3500, 7, 3);
 const upgradeFurnaceGold = createTieredUpgrade("Furnace (Gold)", 8500, 7, 4);
 const upgradeFurnaceDiamond = createTieredUpgrade("Furnace (Diamond)", 17000, 7, 5); */
 
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Attach event listeners for upgrades
+    const attachListener = (id, handler) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.addEventListener("click", handler);
+        } else {
+            console.warn(`Element with ID "${id}" not found in the DOM.`);
+        }
+    };
+
+    // Hoes
+    attachListener("hoeStandard", upgradeHoeStandard);
+    attachListener("hoeStone", upgradeHoeStone);
+    attachListener("hoeIron", upgradeHoeIron);
+    attachListener("hoeGold", upgradeHoeGold);
+    attachListener("hoeDiamond", upgradeHoeDiamond);
+
+    // Water Buckets
+    attachListener("bucketStandard", upgradeBucketStandard);
+    attachListener("bucketStone", upgradeBucketStone);
+    attachListener("bucketIron", upgradeBucketIron);
+    attachListener("bucketGold", upgradeBucketGold);
+    attachListener("bucketDiamond", upgradeBucketDiamond);
+
+    // Milk Bottles
+    attachListener("milkStandard", upgradeMilkStandard);
+    attachListener("milkStone", upgradeMilkStone);
+    attachListener("milkIron", upgradeMilkIron);
+    attachListener("milkGold", upgradeMilkGold);
+    attachListener("milkDiamond", upgradeMilkDiamond);
+
+    // Furnaces
+    attachListener("furnaceStandard", upgradeFurnaceStandard);
+    attachListener("furnaceStone", upgradeFurnaceStone);
+    attachListener("furnaceIron", upgradeFurnaceIron);
+    attachListener("furnaceGold", upgradeFurnaceGold);
+    attachListener("furnaceDiamond", upgradeFurnaceDiamond);
+});
+
 // Upgrade handlers for Hoes
 function upgradeHoeStandard() {
     applyTieredUpgrade("Hoe (Standard)", 100, 5, 1);
@@ -252,49 +294,6 @@ function upgradeFurnaceGold() {
 function upgradeFurnaceDiamond() {
     applyTieredUpgrade("Furnace (Diamond)", 17000, 7, 5);
 }
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    // Attach event listeners for upgrades
-    const attachListener = (id, handler) => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.addEventListener("click", handler);
-        } else {
-            console.warn(`Element with ID "${id}" not found in the DOM.`);
-        }
-    };
-
-    // Hoes
-    attachListener("hoeStandard", upgradeHoeStandard);
-    attachListener("hoeStone", upgradeHoeStone);
-    attachListener("hoeIron", upgradeHoeIron);
-    attachListener("hoeGold", upgradeHoeGold);
-    attachListener("hoeDiamond", upgradeHoeDiamond);
-
-    // Water Buckets
-    attachListener("bucketStandard", upgradeBucketStandard);
-    attachListener("bucketStone", upgradeBucketStone);
-    attachListener("bucketIron", upgradeBucketIron);
-    attachListener("bucketGold", upgradeBucketGold);
-    attachListener("bucketDiamond", upgradeBucketDiamond);
-
-    // Milk Bottles
-    attachListener("milkStandard", upgradeMilkStandard);
-    attachListener("milkStone", upgradeMilkStone);
-    attachListener("milkIron", upgradeMilkIron);
-    attachListener("milkGold", upgradeMilkGold);
-    attachListener("milkDiamond", upgradeMilkDiamond);
-
-    // Furnaces
-    attachListener("furnaceStandard", upgradeFurnaceStandard);
-    attachListener("furnaceStone", upgradeFurnaceStone);
-    attachListener("furnaceIron", upgradeFurnaceIron);
-    attachListener("furnaceGold", upgradeFurnaceGold);
-    attachListener("furnaceDiamond", upgradeFurnaceDiamond);
-});
-
-
 
 // Purchase function for store items
 function purchaseItem(item) {
